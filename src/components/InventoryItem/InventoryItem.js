@@ -9,12 +9,31 @@ const InventoryItem = () => {
         const url = `http://localhost:5000/items/${id}`
         fetch(url)
             .then(res => res.json())
-            .then(data => setItem(data))
-    }, [id])
+            .then(data => {
+                setItem(data);
+            })
+    }, [id, item.quantity])
+
+    const handleQuantityAfterDeliver = () => {
+        const quantity = parseInt(item.quantity) - 1;
+        const updatedQuantityAfterDeliever = { quantity };
+        const url = `http://localhost:5000/items/${id}`
+        fetch(url, {
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(updatedQuantityAfterDeliever)
+        })
+            .then(res => res.json())
+            .then(data => console.log(data))
+    }
 
     const handleUpdateQuantity = e => {
-        e.preventDefault();
-        const quantity = e.target.quantity.value;
+        // e.preventDefault();
+
+
+        const quantity = parseInt(e.target.quantity.value) + parseInt(item.quantity);
 
         const updatedQuantity = { quantity };
         const url = `http://localhost:5000/items/${id}`
@@ -46,7 +65,7 @@ const InventoryItem = () => {
                     </div>
                 </div>
                 <div className='mt-3'>
-                    <button className='block mx-auto bg-gray-900 text-white py-1 px-2 rounded-md'>DELIVERED</button>
+                    <button onClick={handleQuantityAfterDeliver} className='block mx-auto bg-gray-900 text-white py-1 px-2 rounded-md'>DELIVERED</button>
                 </div>
             </div>
             <div className='mx-auto py-2 w-2/3 flex flex-col items-center bg-lime-500 rounded-lg'>
