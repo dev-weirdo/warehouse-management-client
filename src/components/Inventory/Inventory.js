@@ -54,7 +54,7 @@ const Inventory = () => {
                 </table>
             </div>
             <div className='text-center my-6'>
-                <Link to='/addnewitem' type='button' className='mt-2 mx-auto bg-gray-900 text-white py-1 px-2 rounded-md'>Manage Inventory</Link>
+                <Link to='/addnewitem' type='button' className='mt-2 bg-gray-900 text-white py-1 px-2 rounded-md'>Add New Item</Link>
             </div>
         </div>
     );
