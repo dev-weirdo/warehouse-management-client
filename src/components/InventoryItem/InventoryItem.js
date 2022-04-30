@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 const InventoryItem = () => {
     const { id } = useParams();
@@ -19,18 +19,22 @@ const InventoryItem = () => {
     // console.log(typeof item.quantity, item.quantity);
 
     const handleQuantityAfterDeliver = () => {
-        const quantity = parseInt(item.quantity) - 1;
-        const updatedQuantityAfterDeliever = { quantity };
-        const url = `http://localhost:5000/items/${id}`
-        fetch(url, {
-            method: 'PUT',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(updatedQuantityAfterDeliever)
-        })
-            .then(res => res.json())
-            .then(data => console.log(data))
+        const quan = item.quantity;
+        if (quan > 0) {
+            const quantity = parseInt(quan) - 1;
+            const updatedQuantityAfterDeliever = { quantity };
+            const url = `http://localhost:5000/items/${id}`
+            fetch(url, {
+                method: 'PUT',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(updatedQuantityAfterDeliever)
+            })
+                .then(res => res.json())
+                .then(data => { })
+        }
+
     }
 
     const handleUpdateQuantity = e => {
@@ -48,7 +52,7 @@ const InventoryItem = () => {
                 body: JSON.stringify(updatedQuantity)
             })
                 .then(res => res.json())
-                .then(data => console.log(data))
+                .then(data => { })
         }
         else {
             alert('Input quantity should be 1 or more!')
@@ -66,7 +70,7 @@ const InventoryItem = () => {
                     <p><small>{desc}</small></p>
                     <div className='font-bold'>
                         <p>Price: &#2547;{price}</p>
-                        <p>Quantity: {quantity}</p>
+                        <p>Quantity: {quantity > 0 ? quantity : <span className='text-red-600'>Stock Out</span>}</p>
                         <p>Supplier: {supplier_name}</p>
                     </div>
                 </div>
@@ -74,7 +78,10 @@ const InventoryItem = () => {
                     <button onClick={handleQuantityAfterDeliver} className='block mx-auto bg-gray-900 text-white py-1 px-2 rounded-md'>DELIVERED</button>
                 </div>
             </div>
-            <div className='mx-auto py-2 w-2/3 flex flex-col items-center bg-lime-500 rounded-lg'>
+            <div className='text-center my-6'>
+                <Link to='/inventory' type='button' className='mt-2 mx-auto bg-gray-900 text-white py-1 px-2 rounded-md'>Manage Inventory</Link>
+            </div>
+            <div className='mx-auto my-8 py-2 w-2/3 flex flex-col items-center bg-lime-500 rounded-lg'>
                 <p className='text-3xl'>Stock Item</p>
                 <form onSubmit={handleUpdateQuantity} className='my-3'>
                     <input name='quantity' className='block py-2 px-3 rounded-lg' type="number" placeholder='Quantity of your item' />
