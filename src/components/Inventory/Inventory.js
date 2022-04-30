@@ -30,6 +30,7 @@ const Inventory = () => {
                 <table className="table-auto border">
                     <thead>
                         <tr>
+                            <th>Image</th>
                             <th>Name</th>
                             <th>Price</th>
                             <th>Quantity</th>
@@ -40,7 +41,8 @@ const Inventory = () => {
                         {
                             items.map(item => {
                                 return (
-                                    <tr className='border py-3' key={item._id}>
+                                    <tr className='py-3' key={item._id}>
+                                        <td className='px-14'><img className='w-12' src={item.image} alt="" /></td>
                                         <td className='px-14'>{item.name}</td>
                                         <td className='px-14'>{item.price}</td>
                                         <td className='px-14'>{item.quantity}</td>
