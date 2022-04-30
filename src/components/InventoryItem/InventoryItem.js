@@ -5,6 +5,8 @@ const InventoryItem = () => {
     const { id } = useParams();
     const [item, setItem] = useState({});
 
+
+
     useEffect(() => {
         const url = `http://localhost:5000/items/${id}`
         fetch(url)
@@ -12,7 +14,9 @@ const InventoryItem = () => {
             .then(data => {
                 setItem(data);
             })
-    }, [id, item.quantity])
+    }, [id, item])
+
+    // console.log(typeof item.quantity, item.quantity);
 
     const handleQuantityAfterDeliver = () => {
         const quantity = parseInt(item.quantity) - 1;
@@ -30,23 +34,25 @@ const InventoryItem = () => {
     }
 
     const handleUpdateQuantity = e => {
-        // e.preventDefault();
-
-
-        const quantity = parseInt(e.target.quantity.value) + parseInt(item.quantity);
-
-        const updatedQuantity = { quantity };
-        const url = `http://localhost:5000/items/${id}`
-        fetch(url, {
-            method: 'PUT',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(updatedQuantity)
-        })
-            .then(res => res.json())
-            .then(data => console.log(data))
-
+        e.preventDefault();
+        const inputQuantity = e.target.quantity.value;
+        if (inputQuantity > 0) {
+            const quantity = parseInt(inputQuantity) + parseInt(item.quantity);
+            const updatedQuantity = { quantity };
+            const url = `http://localhost:5000/items/${id}`
+            fetch(url, {
+                method: 'PUT',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(updatedQuantity)
+            })
+                .then(res => res.json())
+                .then(data => console.log(data))
+        }
+        else {
+            alert('Input quantity should be 1 or more!')
+        }
         e.target.reset();
     }
 
@@ -71,7 +77,7 @@ const InventoryItem = () => {
             <div className='mx-auto py-2 w-2/3 flex flex-col items-center bg-lime-500 rounded-lg'>
                 <p className='text-3xl'>Stock Item</p>
                 <form onSubmit={handleUpdateQuantity} className='my-3'>
-                    <input name='quantity' className='block' type="number" placeholder='Quantity of your item' />
+                    <input name='quantity' className='block py-2 px-3 rounded-lg' type="number" placeholder='Quantity of your item' />
                     <button className='mt-2 block mx-auto bg-gray-900 text-white py-1 px-2 rounded-md' type='submit'>RESTOCK</button>
                 </form>
             </div>
