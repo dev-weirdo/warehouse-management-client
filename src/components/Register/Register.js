@@ -1,11 +1,11 @@
 import React from 'react';
 
-const Footer = () => {
+const Register = () => {
     return (
         <div>
-            <p>Footer</p>
+            <p>Register</p>
         </div>
     );
 };
 
-export default Footer;
+export default Register;
