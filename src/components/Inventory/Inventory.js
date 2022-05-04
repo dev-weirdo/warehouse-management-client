@@ -25,7 +25,8 @@ const Inventory = () => {
         }
     }
     return (
-        <div>
+        <div className='mt-7'>
+            <p className='text-center text-3xl mb-4'>Manage Inventory</p>
             <div className='flex justify-center'>
                 <table className="table-auto border">
                     <thead>

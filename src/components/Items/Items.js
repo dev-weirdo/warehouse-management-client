@@ -13,7 +13,7 @@ const Items = () => {
 
     return (
         <div>
-            <div className='mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-2/3'>
+            <div className='mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-11/12 md:w-9/12 lg:w-2/3'>
                 {
                     items.slice(0, 6).map(item => <Item key={item._id} item={item}></Item>)
                 }

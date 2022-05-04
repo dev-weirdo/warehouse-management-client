@@ -1,9 +1,11 @@
 import React from 'react';
 
 const Footer = () => {
+    const thisYear = new Date().getFullYear();
+
     return (
-        <div>
-            <p>Footer</p>
+        <div className='h-14 bg-black text-white w-full flex justify-center items-center'>
+            <p>&#169;{thisYear} Grocery Warehouse. All Rights Reserved.</p>
         </div>
     );
 };
