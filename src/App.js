@@ -3,6 +3,7 @@ import AddNewItem from "./components/AddNewItem/AddNewItem";
 import Inventory from "./components/Inventory/Inventory";
 import InventoryItem from "./components/InventoryItem/InventoryItem";
 import Login from "./components/Login/Login";
+import MyItem from "./components/MyItem/MyItem";
 import Register from "./components/Register/Register";
 import RequireAuth from "./components/RequireAuth/RequireAuth";
 import Footer from "./components/Shared/Footer/Footer";
@@ -22,6 +23,9 @@ function App() {
         <Route path="/inventory/:id" element={<InventoryItem></InventoryItem>}></Route>
         <Route path="/addnewitem" element={<RequireAuth>
           <AddNewItem></AddNewItem>
+        </RequireAuth>}></Route>
+        <Route path="/myitem" element={<RequireAuth>
+          <MyItem></MyItem>
         </RequireAuth>}></Route>
         <Route path="/login" element={<Login></Login>}></Route>
         <Route path="/register" element={<Register></Register>}></Route>

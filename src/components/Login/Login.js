@@ -28,14 +28,13 @@ const Login = () => {
         e.preventDefault();
         const email = e.target.email.value;
         const password = e.target.password.value;
-
         signInWithEmailAndPassword(email, password);
     }
 
 
     return (
         <div className='bg-lime-300 my-3 mx-1 md:m-8 rounded-lg h-screen flex flex-col justify-center'>
-            <form className='max-w-[400px] w-full mx-auto bg-lime-400 p-8 rounded-lg text-lg'>
+            <form onSubmit={handleSignIn} className='max-w-[400px] w-full mx-auto bg-lime-400 p-8 rounded-lg text-lg'>
                 <p className='text-center text-3xl'>Login</p>
                 <hr className='border-black my-2' />
                 <div className='flex flex-col'>
@@ -50,7 +49,7 @@ const Login = () => {
                     <Link to='/register'>Need to register?</Link>
                     <p className='cursor-pointer' onClick={() => sendPasswordResetEmail(remail)}>Forgot password?</p>
                 </div>
-                <button onClick={handleSignIn} className='bg-slate-800 hover:bg-slate-900 text-white w-full mb-3 py-2 rounded-md'>Sign In</button>
+                <button type='submit' className='bg-slate-800 hover:bg-slate-900 text-white w-full mb-3 py-2 rounded-md'>Sign In</button>
                 <SocialLogin></SocialLogin>
             </form>
         </div>

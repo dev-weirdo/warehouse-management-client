@@ -35,6 +35,7 @@ const Header = () => {
                     <div className='w-4/5 md:w-4/5 lg:w-4/6 mx-auto flex justify-around items-center text-lg md:text-xl'>
                         <Link to='/'>HOME</Link>
                         <Link to='/inventory'>INVENTORY</Link>
+                        <Link to='/myitem'>My Item</Link>
                         <button onClick={handleLogout}>Logout</button>
                     </div>
                     :
