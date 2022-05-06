@@ -1,7 +1,34 @@
 import React from 'react';
+import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import auth from '../../firebase.init';
 import SocialLogin from '../SocialLogin/SocialLogin';
 
 const Login = () => {
+    const [
+        signInWithEmailAndPassword,
+        user,
+        loading,
+        error,
+    ] = useSignInWithEmailAndPassword(auth);
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    const from = location?.state?.from?.pathname || '/';
+
+    if (user) {
+        navigate(from, { replace: true })
+    }
+
+    const handleSignIn = e => {
+        e.preventDefault();
+        const email = e.target.email.value;
+        const password = e.target.password.value;
+
+        signInWithEmailAndPassword(email, password);
+    }
+
+
     return (
         <div className='bg-lime-300 my-3 mx-1 md:m-8 rounded-lg h-screen flex flex-col justify-center'>
             <form className='max-w-[400px] w-full mx-auto bg-lime-400 p-8 rounded-lg text-lg'>
@@ -9,16 +36,17 @@ const Login = () => {
                 <hr className='border-black my-2' />
                 <div className='flex flex-col'>
                     <label>Email</label>
-                    <input className='mt-2 p-2 bg-gray-200 focus:bg-white outline-none rounded-lg' type="email" required />
+                    <input name='email' className='mt-2 p-2 bg-gray-200 focus:bg-white outline-none rounded-lg' type="email" required />
                 </div>
                 <div className='flex flex-col mt-2'>
                     <label>Password</label>
-                    <input className='mt-2 p-2 bg-gray-200 focus:bg-white outline-none rounded-lg' type="password" required />
+                    <input name='password' className='mt-2 p-2 bg-gray-200 focus:bg-white outline-none rounded-lg' type="password" required />
                 </div>
-                <div className='text-right my-3'>
+                <div className='flex justify-between my-3'>
+                    <Link to='/register'>Need to register?</Link>
                     <p>Forgot password?</p>
                 </div>
-                <button className='bg-slate-800 hover:bg-slate-900 text-white w-full mb-3 py-2 rounded-md'>Sign In</button>
+                <button onClick={handleSignIn} className='bg-slate-800 hover:bg-slate-900 text-white w-full mb-3 py-2 rounded-md'>Sign In</button>
                 <SocialLogin></SocialLogin>
             </form>
         </div>
