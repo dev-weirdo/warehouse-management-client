@@ -1,16 +1,20 @@
-import React from 'react';
-import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { async } from '@firebase/util';
+import React, { useState } from 'react';
+import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 import SocialLogin from '../SocialLogin/SocialLogin';
 
 const Login = () => {
+
+    const [remail, setRemail] = useState('');
     const [
         signInWithEmailAndPassword,
         user,
         loading,
         error,
     ] = useSignInWithEmailAndPassword(auth);
+    const [sendPasswordResetEmail, sending, rerror] = useSendPasswordResetEmail(auth);
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -28,6 +32,10 @@ const Login = () => {
         signInWithEmailAndPassword(email, password);
     }
 
+    const handlePasswordReset = async (e) => {
+        await sendPasswordResetEmail(remail);
+    }
+
 
     return (
         <div className='bg-lime-300 my-3 mx-1 md:m-8 rounded-lg h-screen flex flex-col justify-center'>
@@ -36,7 +44,7 @@ const Login = () => {
                 <hr className='border-black my-2' />
                 <div className='flex flex-col'>
                     <label>Email</label>
-                    <input name='email' className='mt-2 p-2 bg-gray-200 focus:bg-white outline-none rounded-lg' type="email" required />
+                    <input onChange={e => setRemail(e.target.value)} name='email' className='mt-2 p-2 bg-gray-200 focus:bg-white outline-none rounded-lg' type="email" required />
                 </div>
                 <div className='flex flex-col mt-2'>
                     <label>Password</label>
@@ -44,7 +52,7 @@ const Login = () => {
                 </div>
                 <div className='flex justify-between my-3'>
                     <Link to='/register'>Need to register?</Link>
-                    <p>Forgot password?</p>
+                    <p className='cursor-pointer' onClick={handlePasswordReset}>Forgot password?</p>
                 </div>
                 <button onClick={handleSignIn} className='bg-slate-800 hover:bg-slate-900 text-white w-full mb-3 py-2 rounded-md'>Sign In</button>
                 <SocialLogin></SocialLogin>

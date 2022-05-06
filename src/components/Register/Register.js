@@ -10,7 +10,8 @@ const Register = () => {
         user,
         loading,
         error,
-    ] = useCreateUserWithEmailAndPassword(auth);
+    ] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
+
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -20,19 +21,18 @@ const Register = () => {
         navigate(from, { replace: true })
     }
 
+
+
     const handleRegister = e => {
         e.preventDefault();
         const email = e.target.email.value;
         const password = e.target.password.value;
         const cpassword = e.target.cpassword.value;
 
-        console.log(email, password, cpassword)
         if (password === cpassword) {
             createUserWithEmailAndPassword(email, password);
         }
     }
-
-
 
     return (
         <div className='bg-lime-300 my-3 mx-1 md:m-8 rounded-lg h-screen flex flex-col justify-center'>
