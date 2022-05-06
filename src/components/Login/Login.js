@@ -32,10 +32,6 @@ const Login = () => {
         signInWithEmailAndPassword(email, password);
     }
 
-    const handlePasswordReset = async (e) => {
-        await sendPasswordResetEmail(remail);
-    }
-
 
     return (
         <div className='bg-lime-300 my-3 mx-1 md:m-8 rounded-lg h-screen flex flex-col justify-center'>
@@ -52,7 +48,7 @@ const Login = () => {
                 </div>
                 <div className='flex justify-between my-3'>
                     <Link to='/register'>Need to register?</Link>
-                    <p className='cursor-pointer' onClick={handlePasswordReset}>Forgot password?</p>
+                    <p className='cursor-pointer' onClick={() => sendPasswordResetEmail(remail)}>Forgot password?</p>
                 </div>
                 <button onClick={handleSignIn} className='bg-slate-800 hover:bg-slate-900 text-white w-full mb-3 py-2 rounded-md'>Sign In</button>
                 <SocialLogin></SocialLogin>
