@@ -28,7 +28,7 @@ const Header = () => {
     return (
         <div className='bg-lime-300 grid grid-cols-1 md:grid-cols-2 h-20 py-1'>
             <div className='mx-auto flex items-center'>
-                <p className='text-3xl font-bold'>Grocery Warehouse</p>
+                <Link to='/' className='text-3xl font-bold'>Grocery Warehouse</Link>
             </div>
             {
                 user ?
@@ -37,12 +37,13 @@ const Header = () => {
                         <Link to='/inventory'>INVENTORY</Link>
                         <Link to='/myitem'>My Item</Link>
                         <Link to='/addnewitem'>Add Item</Link>
+                        <Link to='/blogs'>Blogs</Link>
                         <button onClick={handleLogout}>Logout</button>
                     </div>
                     :
                     <div className='w-4/5 md:w-4/5 lg:w-4/6 mx-auto flex justify-around items-center text-lg md:text-xl'>
                         <Link to='/'>HOME</Link>
-                        <Link to='/inventory'>INVENTORY</Link>
+                        <Link to='/blogs'>Blogs</Link>
                         <Link to='/login'>LOGIN</Link>
                         <Link to='/register'>REGISTER</Link>
                     </div>

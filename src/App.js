@@ -1,9 +1,11 @@
 import { Route, Routes } from "react-router-dom";
+import Blogs from "./assets/Blogs/Blogs";
 import AddNewItem from "./components/AddNewItem/AddNewItem";
 import Inventory from "./components/Inventory/Inventory";
 import InventoryItem from "./components/InventoryItem/InventoryItem";
 import Login from "./components/Login/Login";
 import MyItem from "./components/MyItem/MyItem";
+import Notfound from "./components/Notfound/Notfound";
 import Register from "./components/Register/Register";
 import RequireAuth from "./components/RequireAuth/RequireAuth";
 import Footer from "./components/Shared/Footer/Footer";
@@ -29,6 +31,8 @@ function App() {
         </RequireAuth>}></Route>
         <Route path="/login" element={<Login></Login>}></Route>
         <Route path="/register" element={<Register></Register>}></Route>
+        <Route path="/blogs" element={<Blogs></Blogs>}></Route>
+        <Route path="*" element={<Notfound></Notfound>}></Route>
       </Routes>
       <Footer />
     </div>
