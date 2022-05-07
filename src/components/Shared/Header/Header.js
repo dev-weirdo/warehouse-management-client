@@ -36,6 +36,7 @@ const Header = () => {
                         <Link to='/'>HOME</Link>
                         <Link to='/inventory'>INVENTORY</Link>
                         <Link to='/myitem'>My Item</Link>
+                        <Link to='/addnewitem'>Add Item</Link>
                         <button onClick={handleLogout}>Logout</button>
                     </div>
                     :
