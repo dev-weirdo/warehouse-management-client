@@ -18,7 +18,7 @@ const AddNewItem = () => {
 
         console.log(item)
 
-        fetch('http://localhost:5000/items', {
+        fetch('https://afternoon-river-04740.herokuapp.com/items', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

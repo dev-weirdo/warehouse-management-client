@@ -8,7 +8,7 @@ const InventoryItem = () => {
 
 
     useEffect(() => {
-        const url = `http://localhost:5000/items/${id}`
+        const url = `https://afternoon-river-04740.herokuapp.com/items/${id}`
         fetch(url)
             .then(res => res.json())
             .then(data => {
@@ -23,7 +23,7 @@ const InventoryItem = () => {
         if (quan > 0) {
             const quantity = parseInt(quan) - 1;
             const updatedQuantityAfterDeliever = { quantity };
-            const url = `http://localhost:5000/items/${id}`
+            const url = `https://afternoon-river-04740.herokuapp.com/items/${id}`
             fetch(url, {
                 method: 'PUT',
                 headers: {
@@ -43,7 +43,7 @@ const InventoryItem = () => {
         if (inputQuantity > 0) {
             const quantity = parseInt(inputQuantity) + parseInt(item.quantity);
             const updatedQuantity = { quantity };
-            const url = `http://localhost:5000/items/${id}`
+            const url = `https://afternoon-river-04740.herokuapp.com/items/${id}`
             fetch(url, {
                 method: 'PUT',
                 headers: {

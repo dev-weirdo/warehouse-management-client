@@ -2,7 +2,7 @@ import React from 'react';
 
 const Blogs = () => {
     return (
-        <div className='w-4/6 h-screen flex flex-col mx-auto justify-center my-5'>
+        <div className='w-5/6 md:w-4/6 flex flex-col mx-auto justify-center my-5'>
             <div className='my-5'>
                 <p className='text-3xl my-2'>Difference between JavaScript and NodeJS</p>
                 <p className='text-xl'><span className='font-bold'>Ans: </span>JavaScript is a basic programming language that may be executed in any browser that supports the JavaScript Engine. Whereas Node JS is an interpreter or execution environment for the JavaScript programming language, it requires libraries that can be readily accessible from JavaScript programming for better utilization.</p>

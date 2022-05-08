@@ -32,18 +32,16 @@ const Header = () => {
             </div>
             {
                 user ?
-                    <div className='w-4/5 md:w-4/5 lg:w-4/6 mx-auto flex justify-around items-center text-lg md:text-xl'>
-                        <Link to='/'>HOME</Link>
+                    <div className='w-full md:w-4/5 lg:w-4/6 mx-auto flex justify-around items-center text-sm md:text-xl'>
                         <Link to='/inventory'>INVENTORY</Link>
-                        <Link to='/myitem'>My Item</Link>
-                        <Link to='/addnewitem'>Add Item</Link>
-                        <Link to='/blogs'>Blogs</Link>
-                        <button onClick={handleLogout}>Logout</button>
+                        <Link to='/myitem'>MY ITEM</Link>
+                        <Link to='/addnewitem'>ADD ITEM</Link>
+                        <Link to='/blogs'>BLOGS</Link>
+                        <button onClick={handleLogout}>LOGOUT</button>
                     </div>
                     :
                     <div className='w-4/5 md:w-4/5 lg:w-4/6 mx-auto flex justify-around items-center text-lg md:text-xl'>
-                        <Link to='/'>HOME</Link>
-                        <Link to='/blogs'>Blogs</Link>
+                        <Link to='/blogs'>BLOGS</Link>
                         <Link to='/login'>LOGIN</Link>
                         <Link to='/register'>REGISTER</Link>
                     </div>

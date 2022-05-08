@@ -5,7 +5,7 @@ const Inventory = () => {
     const [items, setItems] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/items')
+        fetch('https://afternoon-river-04740.herokuapp.com/items')
             .then(res => res.json())
             .then(data => setItems(data))
     }, [items])
@@ -13,7 +13,7 @@ const Inventory = () => {
     const handleDeleteItem = (id) => {
         const agree = window.confirm('Delete this item?');
         if (agree) {
-            const url = `http://localhost:5000/items/${id}`
+            const url = `https://afternoon-river-04740.herokuapp.com/items/${id}`
             fetch(url, {
                 method: 'DELETE'
             })
@@ -27,8 +27,8 @@ const Inventory = () => {
     return (
         <div className='mt-7'>
             <p className='text-center text-3xl mb-4'>Manage Inventory</p>
-            <div className='flex justify-center'>
-                <table className="table-auto border">
+            <div className='flex justify-center overflow-x-auto'>
+                <table className="table-auto border lg:w-3/5">
                     <thead>
                         <tr>
                             <th>Image</th>
@@ -43,11 +43,11 @@ const Inventory = () => {
                             items.map(item => {
                                 return (
                                     <tr className='py-3' key={item._id}>
-                                        <td className='px-14'><img className='w-12' src={item.image} alt="" /></td>
-                                        <td className='px-14'>{item.name}</td>
-                                        <td className='px-14'>{item.price}</td>
-                                        <td className='px-14'>{item.quantity}</td>
-                                        <td className='px-14'>{item.supplier_name}</td>
+                                        <td><img className='w-12' src={item.image} alt="" /></td>
+                                        <td>{item.name}</td>
+                                        <td>{item.price}</td>
+                                        <td>{item.quantity}</td>
+                                        <td>{item.supplier_name}</td>
                                         <button onClick={() => handleDeleteItem(item._id)} className='px-2 rounded-lg bg-red-500 text-white'>DELETE</button>
                                     </tr>
                                 )
