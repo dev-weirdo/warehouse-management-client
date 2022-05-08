@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
-import Blogs from "./assets/Blogs/Blogs";
 import AddNewItem from "./components/AddNewItem/AddNewItem";
+import Blogs from "./components/Blogs/Blogs";
 import Inventory from "./components/Inventory/Inventory";
 import InventoryItem from "./components/InventoryItem/InventoryItem";
 import Login from "./components/Login/Login";
