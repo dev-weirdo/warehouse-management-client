@@ -42,7 +42,7 @@ const Login = () => {
     }
 
     if (user) {
-        // navigate(from, { replace: true })
+        navigate(from, { replace: true })
     }
 
     const handleSignIn = async e => {
@@ -52,7 +52,7 @@ const Login = () => {
         await signInWithEmailAndPassword(email, password);
         const { data } = await axios.post('https://afternoon-river-04740.herokuapp.com/login', { email });
         localStorage.setItem('accessToken', data.accessToken);
-        navigate(from, { replace: true });
+        // navigate(from, { replace: true });
     }
 
     const handlePasswordReset = async () => {

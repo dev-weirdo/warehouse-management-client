@@ -18,16 +18,6 @@ const SocialLogin = () => {
     if (error) {
         errmsg = error.message;
     }
-    if (user) {
-        const call = async () => {
-            const email = user.email;
-            console.log(email);
-            const { data } = await axios.post('https://afternoon-river-04740.herokuapp.com/login', { email });
-            localStorage.setItem('accessToken', data.accessToken);
-            navigate(from, { replace: true });
-        }
-        call();
-    }
 
     const handleGoogleSignIn = async () => {
         await signInWithGoogle();
@@ -48,7 +38,14 @@ const SocialLogin = () => {
     }
 
     if (user) {
-        navigate(from, { replace: true });
+        const call = async () => {
+            const email = user.email;
+            console.log(email);
+            const { data } = await axios.post('https://afternoon-river-04740.herokuapp.com/login', { email });
+            localStorage.setItem('accessToken', data.accessToken);
+            navigate(from, { replace: true });
+        }
+        call();
     }
 
     return (
@@ -60,8 +57,8 @@ const SocialLogin = () => {
             </div>
             <div className='mt-3'>
                 <p onClick={handleGoogleSignIn} className='flex cursor-pointer justify-center items-center mx-auto text-white bg-slate-800 hover:bg-slate-900 p-1 rounded-md'><img className='w-4 h-4 mr-1' src={googleLogo} alt="" />Continue with Google</p>
-                <p className='text-center text-red-600'>{errmsg}</p>
             </div>
+            <p className='text-center'>{errmsg}</p>
         </div>
     );
 };
